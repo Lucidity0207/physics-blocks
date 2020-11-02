@@ -1,5 +1,5 @@
 //variables
-var ctx, controller, rectangle, loop;
+var ctx, controller, square, loop;
 
 //canvas size
 ctx = document.querySelector("canvas").getContext("2d");
@@ -7,7 +7,7 @@ ctx = document.querySelector("canvas").getContext("2d");
 ctx.canvas.height = 360;
 ctx.canvas.width = 640;
 
-// square (rect)
+// square propertys (rect)
 square = {
     height:32,
     jumping:true,
@@ -16,6 +16,27 @@ square = {
     vx:0,
     y:0,
     vy:0
+};
+
+keyContr = {
+    left:false,
+    right:false,
+    up:false,
+    keylistener:function(event) {
+        var key_state = (event.type == "keydown")?true:false;
+
+        switch(event.keyCode) {
+            case 37: //left key
+            keyContr.left = key_state;
+            break;
+            case 38://up key
+            keyContr.up = key_state;
+            break;
+            case 39://right key
+            keyContr.right = key_state;
+            break;
+        }
+    }
 };
 //draw square
 ctx.fillStyle = "#202020";
@@ -31,3 +52,9 @@ ctx.beginPath();
 ctx.moveTo(0,325);
 ctx.lineTo(640, 325);
 ctx.stroke();
+
+
+//controller event listeners
+
+window.addEventListener("keydown", keyContr.keylistener);
+window.addEventListener("keyup", keyContr.keylistener);
