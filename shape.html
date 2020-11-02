@@ -1,40 +1,46 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
-        <meta charset="utf-8"/>
-        <title>Shape it up!</title>
-        <style>
-            *{
-                box-sizing:border-box;
-                margin:0;
-                padding:0;
-            }
-            html,body{
-                height:100%;
-                width:100%;
-            }
-            body{
-                align-content: space-around;
-                background-color:#202830;
-                color: #ffffff;
-                display:grid;
-                justify-content: center;
-            }
-            canvas{
-                background-color: #ffffff;
-            }
-        </style>
-    </head>
 
-    <body>
+<head>
+    <meta charset="utf-8" />
+    <title>Shape it up!</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-        <h1> Make a tower! </h1>
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+        }
 
-        <canvas></canvas>
+        body {
+            align-content: space-around;
+            background-color: #202830;
+            color: #ffffff;
+            display: grid;
+            justify-content: center;
+        }
 
-        <p>Use the arrow keys, and drag the mouse to move the square</p>
+        canvas {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
 
-        <script src="main.js" defer></script>
-    </body>
+<body>
+
+    <h1> Make a tower! </h1>
+
+    <canvas id='mycanvas'></canvas>
+
+    <p>Use the arrow keys, and drag the mouse to move the square</p>
+
+    <script src="main.js" defer></script>
+</body>
+
 </html>
