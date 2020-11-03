@@ -77,9 +77,9 @@ loop = function () {
     square.y_velocity *= 0.9;
 
     // collision detection y axis
-    if (square.y > 325 - 1 - 48) {
+    if (square.y > 330 - 1 - 48) {
         square.jumping = false;
-        square.y = 325 - 1 - 48;
+        square.y = 330 - 1 - 48;
         square.y_velocity = 0;
     }
     // if square is going off the left of the screen
