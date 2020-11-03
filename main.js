@@ -100,12 +100,12 @@ loop = function () {
     ctx.rect(square.x, square.y, square.width, square.height);
     ctx.fill();
     //floor line
-    // ctx.strokeStyle = "#202830";
-    // ctx.lineWidth = 4;
-    // ctx.beginPath();
-    // ctx.moveTo(0, 325);
-    // ctx.lineTo(640, 325);
-    // ctx.stroke();
+    ctx.strokeStyle = "#202830";
+    ctx.lineWidth = 4;
+    ctx.beginPath();
+    ctx.moveTo(0, 325);
+    ctx.lineTo(640, 325);
+    ctx.stroke();
 
     //call update when the browser is ready to draw again
     window.requestAnimationFrame(loop);
