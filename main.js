@@ -3,7 +3,10 @@ var ctx, controller, square, loop;
 var canvas = document.getElementById('mycanvas');
 var offsetLeft, offsetTop
 var isMouseDown = false;
+var isMouseUp = true;
+var squareNum = 20;
 var mouseX = 0, mouseY = 0;
+var square;
 //canvas size
 ctx = document.querySelector("canvas").getContext("2d");
 
@@ -47,16 +50,24 @@ keyContr = {
 canvas.addEventListener('mousedown', onMouseDown);
 canvas.addEventListener('mouseup', onMouseUp);
 
-function onMouseDown(event) {
-    isMouseDown = true;
-    mouseX = event.clientX - offsetLeft;
-    mouseY = event.clientY - offsetTop;
-    console.log('mousedown')
 
+// tracking mouse x & y
+canvas.addEventListener('mousemove', function (e) {
+    mouseX = e.x;
+    mouseY = e.y;
+    console.log('x=', mouseX, 'y=', mouseY);
+})
+
+console.log(isMouseDown);
+function onMouseDown() {
+    isMouseDown = true;
+    console.log(isMouseDown);
 }
 function onMouseUp() {
     isMouseDown = false;
+    console.log(isMouseDown);
 }
+
 loop = function () {
 
     if (keyContr.up && square.jumping == false) {
@@ -92,13 +103,18 @@ loop = function () {
         square.x = -64;
 
     }
-    //draw square
     ctx.fillStyle = "#202020";
     ctx.fillRect(0, 0, 640, 325);
-    ctx.fillStyle = "#ff0000";
-    ctx.beginPath();
-    ctx.rect(square.x, square.y, square.width, square.height);
-    ctx.fill();
+    //draw square 
+    drawSquare();
+
+    function drawSquare() {
+        ctx.fillStyle = "#ff0000";
+        ctx.beginPath();
+        ctx.rect(square.x, square.y, square.width, square.height);
+        ctx.fill();
+    }
+    
     //floor line
     ctx.strokeStyle = "#202830";
     ctx.lineWidth = 4;
