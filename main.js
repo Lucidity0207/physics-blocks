@@ -70,7 +70,7 @@ loop = function () {
         square.x_velocity += 0.5;
     }
     // physics
-    square.y_velocity += 1; //gravity
+    square.y_velocity += 1.5; //gravity
     square.x += square.x_velocity;
     square.y += square.y_velocity;
     square.x_velocity *= 0.9;// friction
