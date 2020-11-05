@@ -3,24 +3,47 @@ var ctx, controller, square, loop;
 var canvas = document.getElementById('mycanvas');
 var offsetLeft, offsetTop
 var isMouseDown = false;
-var isMouseUp = true;
+var square = [];
 var squareNum = 20;
+var draggedSquare = null;
 var mouseX = 0, mouseY = 0;
-var square;
+
 //canvas size
 ctx = document.querySelector("canvas").getContext("2d");
 
 ctx.canvas.height = 360;
 ctx.canvas.width = 640;
 
+canvas.addEventListener('mousedown', onMouseDown);
+canvas.addEventListener('mouseup', onMouseUp);
+
+
+// tracking mouse x & y
+canvas.addEventListener('mousemove', onDragSquare);
+
+console.log(isMouseDown);
+function onMouseDown() {
+    isMouseDown = true;
+    console.log(isMouseDown);
+}
+function onMouseUp() {
+    isMouseDown = false;
+    console.log(isMouseDown);
+}
+
+function onDragSquare(e){
+    mouseX = e.x;
+    mouseY = e.y;
+    console.log('x=', mouseX, 'y=', mouseY);
+}
 // square properties (rect)
 square = {
     height: 48,
     jumping: true,
     width: 48,
-    x: 300, //center of canvas
+    x: mouseX, 
     x_velocity: 0,
-    y: 0,
+    y: mouseY,
     y_velocity: 0
 };
 
@@ -47,29 +70,7 @@ keyContr = {
     }
 };
 
-canvas.addEventListener('mousedown', onMouseDown);
-canvas.addEventListener('mouseup', onMouseUp);
-
-
-// tracking mouse x & y
-canvas.addEventListener('mousemove', function (e) {
-    mouseX = e.x;
-    mouseY = e.y;
-    console.log('x=', mouseX, 'y=', mouseY);
-})
-
-console.log(isMouseDown);
-function onMouseDown() {
-    isMouseDown = true;
-    console.log(isMouseDown);
-}
-function onMouseUp() {
-    isMouseDown = false;
-    console.log(isMouseDown);
-}
-
-loop = function () {
-
+loop = function() {
     if (keyContr.up && square.jumping == false) {
         square.y_velocity -= 20;
         square.jumping = true;
@@ -103,8 +104,10 @@ loop = function () {
         square.x = -64;
 
     }
+
     ctx.fillStyle = "#202020";
     ctx.fillRect(0, 0, 640, 325);
+
     //draw square 
     drawSquare();
 
@@ -114,7 +117,7 @@ loop = function () {
         ctx.rect(square.x, square.y, square.width, square.height);
         ctx.fill();
     }
-    
+
     //floor line
     ctx.strokeStyle = "#202830";
     ctx.lineWidth = 4;
