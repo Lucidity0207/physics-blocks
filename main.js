@@ -34,7 +34,6 @@ function onMouseDown() {
 
     var square = new Square(mouseX, mouseY, 48);
     console.log(squares.length);
-    console.log();
     squares.push(square);
 }
 function onMouseUp() {
@@ -95,7 +94,7 @@ loop = function() {
 
         squares[i].boundsDetections();
 
-        squares[i].collisionDetection(squares, i);
+        squares[i].collisionDetection(square, i);
 
         squares[i].drawSquare();
 
@@ -108,6 +107,8 @@ loop = function() {
     ctx.moveTo(0, 325);
     ctx.lineTo(640, 325);
     ctx.stroke();
+
+
 
     //call update when the browser is ready to draw again
     window.requestAnimationFrame(loop);
