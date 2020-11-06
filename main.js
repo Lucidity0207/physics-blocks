@@ -3,10 +3,15 @@ var ctx, controller, square, loop;
 var canvas = document.getElementById('mycanvas');
 var offsetLeft, offsetTop
 var isMouseDown = false;
-var square = [];
+var squares = [];
 var squareNum = 20;
 var draggedSquare = null;
 var mouseX = 0, mouseY = 0;
+var selectedIndex = 0;
+
+//squares array which contains all instances of a Square object
+//When creating a new Square use an object constructor OR a class
+//In your loop function, loop through all Squares in the squares array and do the physics stuff to each of them.
 
 //canvas size
 ctx = document.querySelector("canvas").getContext("2d");
@@ -21,23 +26,32 @@ canvas.addEventListener('mouseup', onMouseUp);
 // tracking mouse x & y
 canvas.addEventListener('mousemove', onDragSquare);
 
-console.log(isMouseDown);
+//console.log(isMouseDown);
 function onMouseDown() {
     isMouseDown = true;
-    console.log(isMouseDown);
+    //console.log(isMouseDown);
+    
+
+    var square = new Square(mouseX, mouseY, 48);
+    
+    console.log();
+    squares.push(square);
 }
 function onMouseUp() {
     isMouseDown = false;
-    console.log(isMouseDown);
+    //console.log(isMouseDown);
 }
 
 function onDragSquare(e){
-    mouseX = e.x;
-    mouseY = e.y;
-    console.log('x=', mouseX, 'y=', mouseY);
+    var rect = canvas.getBoundingClientRect();
+    mouseX = e.x - rect.left;
+    mouseY = e.y - rect.top;
+
+    
+    //console.log('x=', mouseX, 'y=', mouseY);
 }
 // square properties (rect)
-square = {
+/*square = {
     height: 48,
     jumping: true,
     width: 48,
@@ -45,7 +59,9 @@ square = {
     x_velocity: 0,
     y: mouseY,
     y_velocity: 0
-};
+};*/
+
+squares.push(new Square(mouseX, mouseY, 48));
 
 
 // making key press functions 
@@ -71,52 +87,38 @@ keyContr = {
 };
 
 loop = function() {
-    if (keyContr.up && square.jumping == false) {
-        square.y_velocity -= 20;
-        square.jumping = true;
+    if (keyContr.up && squares[selectedIndex].jumping == false) {
+        squares[selectedIndex].y_velocity -= 20;
+        squares[selectedIndex].jumping = true;
     }
     if (keyContr.left) {
-        square.x_velocity -= 0.5;
+        squares[selectedIndex].x_velocity -= 0.5;
     }
     if (keyContr.right) {
-        square.x_velocity += 0.5;
+        squares[selectedIndex].x_velocity += 0.5;
     }
-    // physics
-    square.y_velocity += 1.5; //gravity
-    square.x += square.x_velocity;
-    square.y += square.y_velocity;
-    square.x_velocity *= 0.9;// friction
-    square.y_velocity *= 0.9;
-
-    // collision detection y axis
-    if (square.y > 330 - 1 - 48) {
-        square.jumping = false;
-        square.y = 330 - 1 - 48;
-        square.y_velocity = 0;
-    }
-    // if square is going off the left of the screen
-    if (square.x < -64) {
-
-        square.x = 640;
-
-    } else if (square.x > 640) {// if square goes past right boundary
-
-        square.x = -64;
-
-    }
-
+    
+    //background and floor
     ctx.fillStyle = "#202020";
     ctx.fillRect(0, 0, 640, 325);
 
     //draw square 
-    drawSquare();
+    for(var i = 0; i < squares.length; i++){
+        squares[i].basicPhysics();
 
-    function drawSquare() {
-        ctx.fillStyle = "#ff0000";
-        ctx.beginPath();
-        ctx.rect(square.x, square.y, square.width, square.height);
-        ctx.fill();
+        squares[i].collisionDetection();
+
+        squares[i].drawSquare();
     }
+    
+
+    
+    
+
+    
+    
+
+    
 
     //floor line
     ctx.strokeStyle = "#202830";
