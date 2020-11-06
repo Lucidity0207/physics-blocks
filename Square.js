@@ -9,8 +9,9 @@ class Square {
         this.y_velocity = 0;
         this.jumping = true;
         this.selected = false;
+        this.isColliding = false;
     }
-    
+
     logCoordinates() {
         console.log("X: " + this.x + " | Y: " + this.y);
     }
@@ -22,16 +23,7 @@ class Square {
         this.x_velocity *= 0.9;// friction
         this.y_velocity *= 0.9;
     }
-    collides(x1, y1, w1, x2, y2, w2) {
-        //check x and y for overlap
-        if(x2 > w1 + x1 ||
-            x1 > w2 + x2 ||
-            y2 > w1 + y1 || 
-            y1 > w2 + y2){
-                return false;
-            }
-            return true;
-    }
+
     collisionDetection() {
         for (let i = 0; i < squares.length; i++) {
 
@@ -40,11 +32,21 @@ class Square {
                 if (squares[i].collides(squares[j])) {
 
                     console.log("colliding");
-                    
                 }
 
             }
         }
+    }
+    collides(x1, y1, w1, x2, y2, w2) {
+        //check x and y for overlap
+        
+        if (x2 > w1 + x1 || 
+            x1 > w2 + x2 || 
+            y2 > w1 + y1 || 
+            y1 > w2 + y2){
+            return false;
+        }
+        return true;
     }
 
     boundsDetections() {
