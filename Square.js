@@ -22,8 +22,24 @@ class Square {
         this.x_velocity *= 0.9;// friction
         this.y_velocity *= 0.9;
     }
-
+    collides() {
+        
+    }
     collisionDetection() {
+        for(i = 0; i< squares.length; i++) {
+
+            for(j = i+1; j < squares.length; j++){
+        
+                if(squares[i].collides(squares[j])){
+        
+                    console.log("Do something");
+                }
+                
+            }
+        }
+    }
+
+    boundsDetections() {
         if (this.y > 330 - 1 - 48) {
             this.jumping = false;
             this.y = 330 - 1 - 48;
@@ -52,4 +68,6 @@ class Square {
         ctx.fill();
     }
 }
+
+
 

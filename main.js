@@ -9,6 +9,7 @@ var draggedSquare = null;
 var mouseX = 0, mouseY = 0;
 var selectedIndex = 0;
 
+
 //squares array which contains all instances of a Square object
 //When creating a new Square use an object constructor OR a class
 //In your loop function, loop through all Squares in the squares array and do the physics stuff to each of them.
@@ -92,9 +93,13 @@ loop = function() {
     for(var i = 0; i < squares.length; i++){
         squares[i].basicPhysics();
 
-        squares[i].collisionDetection();
+        squares[i].boundsDetections();
+
+        squares[i].collisionDetection(squares, i);
 
         squares[i].drawSquare();
+
+
     }
     //floor line
     ctx.strokeStyle = "#202830";
