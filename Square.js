@@ -1,13 +1,3 @@
-/*square = {
-    height: 48,
-    jumping: true,
-    width: 48,
-    x: mouseX, 
-    x_velocity: 0,
-    y: mouseY,
-    y_velocity: 0
-};
-*/
 
 class Square {
     constructor(x, y, w) {
@@ -48,7 +38,7 @@ class Square {
     
             this.x = -64;
     
-        }
+        } 
     }
 
     toggleSelected() {
@@ -63,11 +53,3 @@ class Square {
     }
 }
 
-/*var exampleSquare = new Square(10, 20, 50);
-var sqr1 = new Square(10, 50, 10);
-
-var squareArray = [exampleSquare, sqr1];
-
-for (var i = 0; i < squareArray.length; i++) {
-    squareArray[i].basicPhysics();
-}*/

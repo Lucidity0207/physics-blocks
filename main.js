@@ -26,20 +26,19 @@ canvas.addEventListener('mouseup', onMouseUp);
 // tracking mouse x & y
 canvas.addEventListener('mousemove', onDragSquare);
 
-//console.log(isMouseDown);
+
 function onMouseDown() {
     isMouseDown = true;
-    //console.log(isMouseDown);
     
 
     var square = new Square(mouseX, mouseY, 48);
-    
+    console.log(squares.length);
     console.log();
     squares.push(square);
 }
 function onMouseUp() {
     isMouseDown = false;
-    //console.log(isMouseDown);
+    
 }
 
 function onDragSquare(e){
@@ -47,22 +46,9 @@ function onDragSquare(e){
     mouseX = e.x - rect.left;
     mouseY = e.y - rect.top;
 
-    
-    //console.log('x=', mouseX, 'y=', mouseY);
 }
-// square properties (rect)
-/*square = {
-    height: 48,
-    jumping: true,
-    width: 48,
-    x: mouseX, 
-    x_velocity: 0,
-    y: mouseY,
-    y_velocity: 0
-};*/
 
 squares.push(new Square(mouseX, mouseY, 48));
-
 
 // making key press functions 
 keyContr = {
@@ -110,16 +96,6 @@ loop = function() {
 
         squares[i].drawSquare();
     }
-    
-
-    
-    
-
-    
-    
-
-    
-
     //floor line
     ctx.strokeStyle = "#202830";
     ctx.lineWidth = 4;
@@ -133,7 +109,14 @@ loop = function() {
 
 };
 
-
+function generateHex() {
+    var str = "0123456789ABCDEF";
+    var result = "#";
+    for (var i = 0; i < 6; i++) {
+        result += str.charAt(Math.floor(Math.random() * 16));
+    }
+    return result;
+}
 
 //controller event listeners
 
