@@ -5,7 +5,7 @@ class Square {
         this.y = y;
         this.width = w;
         this.height = w;
-        this.radius = 20;
+        this.radius = 24;
         this.x_velocity = 0;
         this.y_velocity = 0;
         this.jumping = true;
@@ -46,12 +46,42 @@ class Square {
             var ay = (ty - squareB.y) * 0.5;
             squareB.x_velocity += ax;
             squareB.y_velocity += ay;
-            this.x_velocity -= ax;
-            this.y_velocity -= ay;
+            this.x_velocity -= 0;
+            this.y_velocity -= 0;
           }
         }
   
       }
+    // checkAllCollisions() {
+    //     var square;
+    //     for(var i = 0; i < squares.length; i++){
+    //       square = squares[i];
+    //       square.collision(i, squares);
+    //     }
+    // }
+    // collision(i, squares){
+    //     for(var j = i+1 ; j < squares.length; j++){
+    //       var squareB = squares[j];
+    //       var dx = squareB.x - this.x;
+    //       var dy = squareB.y - this.y;
+    //       var dist = Math.sqrt(dx * dx + dy * dy);
+    //       var minDist = this.radius + squareB.radius;
+    //       if(dist < minDist){
+    //         var angle = Math.atan2(dy, dx);
+    //         var tx = this.x + Math.cos(angle) * minDist;
+    //         var ty = this.y + Math.sin(angle) * minDist;
+    //         var ax = (tx - squareB.x) * 0.5;
+    //         var ay = (ty - squareB.y) * 0.5;
+    //         squareB.x_velocity += ax;
+    //         squareB.y_velocity += ay;
+    //         this.x_velocity -= 0;
+    //         this.y_velocity -= 0;
+    //       }
+    //     }
+  
+    //   }
+
+
     // collisionDetection() {
     //     let sq1;
     //     let sq2;
@@ -89,9 +119,9 @@ class Square {
     // }
 
     boundsDetections() {
-        if (this.y > 325 - 1 - 48) {
+        if (this.y > 330 - 1 - 48) {
             this.jumping = false;
-            this.y = 325 - 1 - 48;
+            this.y = 330 - 1 - 48;
             this.y_velocity = 0;
         }
         // if square is going off the left of the screen
