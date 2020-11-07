@@ -1,10 +1,10 @@
+
 //variables
 var ctx, controller, square, loop;
 var canvas = document.getElementById('mycanvas');
 var offsetLeft, offsetTop
 var isMouseDown = false;
 var squares = [];
-var squareNum = 20;
 var draggedSquare = null;
 var mouseX = 0, mouseY = 0;
 var selectedIndex = 0;
@@ -94,7 +94,9 @@ loop = function() {
 
         squares[i].boundsDetections();
 
-        squares[i].collisionDetection(square, i);
+        squares[i].checkAllCollisions();
+
+        // squares[i].collisionDetection(squares, i);
 
         squares[i].drawSquare();
 
