@@ -45,7 +45,7 @@ class Square {
             var ax = (tx - squareB.x) * 0.5;
             var ay = (ty - squareB.y) * 0.5;
             squareB.x_velocity += ax;
-            sqaureB.y_velocity += ay;
+            squareB.y_velocity += ay;
             this.x_velocity -= ax;
             this.y_velocity -= ay;
           }
