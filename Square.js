@@ -26,60 +26,32 @@ class Square {
     }
     checkAllCollisions() {
         var square;
-        for(var i = 0; i < squares.length; i++){
-          square = squares[i];
-          square.collision(i, squares);
+        for (var i = 0; i < squares.length; i++) {
+            square = squares[i];
+            square.collision(i, squares);
         }
     }
-    collision(i, squares){
-        for(var j = i+1 ; j < squares.length; j++){
-          var squareB = squares[j];
-          var dx = squareB.x - this.x;
-          var dy = squareB.y - this.y;
-          var dist = Math.sqrt(dx * dx + dy * dy);
-          var minDist = this.radius + squareB.radius;
-          if(dist < minDist){
-            var angle = Math.atan2(dy, dx);
-            var tx = this.x + Math.cos(angle) * minDist;
-            var ty = this.y + Math.sin(angle) * minDist;
-            var ax = (tx - squareB.x) * 0.5;
-            var ay = (ty - squareB.y) * 0.5;
-            squareB.x_velocity += ax;
-            squareB.y_velocity += ay;
-            this.x_velocity -= 0;
-            this.y_velocity -= 0;
-          }
+    collision(i, squares) {
+        for (var j = i + 1; j < squares.length; j++) {
+            var squareB = squares[j];
+            var dx = squareB.x - this.x;
+            var dy = squareB.y - this.y;
+            var dist = Math.sqrt(dx * dx + dy * dy);
+            var minDist = this.radius + squareB.radius;
+            if (dist < minDist) {
+                var angle = Math.atan2(dy, dx);
+                var tx = this.x + Math.cos(angle) * minDist;
+                var ty = this.y + Math.sin(angle) * minDist;
+                var ax = (tx - squareB.x) * 0.5;
+                var ay = (ty - squareB.y) * 0.5;
+                squareB.x_velocity += ax;
+                squareB.y_velocity += ay;
+                this.x_velocity -= 0;
+                this.y_velocity -= 0;
+            }
         }
-  
-      }
-    // checkAllCollisions() {
-    //     var square;
-    //     for(var i = 0; i < squares.length; i++){
-    //       square = squares[i];
-    //       square.collision(i, squares);
-    //     }
-    // }
-    // collision(i, squares){
-    //     for(var j = i+1 ; j < squares.length; j++){
-    //       var squareB = squares[j];
-    //       var dx = squareB.x - this.x;
-    //       var dy = squareB.y - this.y;
-    //       var dist = Math.sqrt(dx * dx + dy * dy);
-    //       var minDist = this.radius + squareB.radius;
-    //       if(dist < minDist){
-    //         var angle = Math.atan2(dy, dx);
-    //         var tx = this.x + Math.cos(angle) * minDist;
-    //         var ty = this.y + Math.sin(angle) * minDist;
-    //         var ax = (tx - squareB.x) * 0.5;
-    //         var ay = (ty - squareB.y) * 0.5;
-    //         squareB.x_velocity += ax;
-    //         squareB.y_velocity += ay;
-    //         this.x_velocity -= 0;
-    //         this.y_velocity -= 0;
-    //       }
-    //     }
-  
-    //   }
+
+    }
 
 
     // collisionDetection() {
@@ -92,7 +64,7 @@ class Square {
     //     }
     //     //loops through squares array checking each object for collision
     //     for (let i = 0; i < squares.length; i++) {
-            
+
     //         sq1 = squares[i];
     //         for (let j = i + 1; j < squares.length; j++) {
 
@@ -108,7 +80,7 @@ class Square {
     // }
     // collides(x1, y1, w1, x2, y2, w2) {
     //     //check x and y for overlap
-        
+
     //     if (x2 > w1 + x1 || 
     //         x1 > w2 + x2 || 
     //         y2 > w1 + y1 || 
@@ -135,9 +107,12 @@ class Square {
 
         }
     }
-
     toggleSelected() {
         this.selected = !this.selected;
+        let d = dist(mouseX, mouseY, this.x, this.y);
+        if (d < this.radius) {
+          console.log('click');
+        }
     }
 
     drawSquare() {

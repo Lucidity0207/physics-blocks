@@ -5,7 +5,6 @@ var canvas = document.getElementById('mycanvas');
 var offsetLeft, offsetTop
 var isMouseDown = false;
 var squares = [];
-var draggedSquare = null;
 var mouseX = 0, mouseY = 0;
 var selectedIndex = 0;
 
@@ -25,27 +24,38 @@ canvas.addEventListener('mouseup', onMouseUp);
 
 
 // tracking mouse x & y
-canvas.addEventListener('mousemove', onDragSquare);
+canvas.addEventListener('mousemove', mouseXY);
 
 
 function onMouseDown() {
     isMouseDown = true;
     
-
     var square = new Square(mouseX, mouseY, 48);
     console.log(squares.length);
     squares.push(square);
+    for (let i = 0; i < squares.length; i++) {
+        squares[i].toggleSelected(mouseX, mouseY);
+      }
 }
 function onMouseUp() {
     isMouseDown = false;
     
 }
-
-function onDragSquare(e){
+function mouseXY(e){
     var rect = canvas.getBoundingClientRect();
     mouseX = e.x - rect.left;
     mouseY = e.y - rect.top;
 
+}
+function dist(x,y){
+    this.x = x;
+    this.y = y;
+
+    this.distanceTo = function (point)
+    {
+        var dist = Math.sqrt((Math.pow(this.x-this.x,2))+(Math.pow(this.y-this.y,2)))
+        return dist;
+    };
 }
 
 squares.push(new Square(mouseX, mouseY, 48));
