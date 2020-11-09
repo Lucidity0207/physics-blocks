@@ -26,40 +26,45 @@ canvas.addEventListener('mouseup', onMouseUp);
 // tracking mouse x & y
 canvas.addEventListener('mousemove', mouseXY);
 
-function clickedOnSquare() {
+function clickedOnSquare(x, y, r) {
     //Loop through all squares.
-      //If mouseX and mouseY collide with square
-        //Then return true.
-    //Out loop
-      //return false.  
+    for (let i = 0; i < squares.length; i++) {
+        //If mouseX and mouseY collide with square
+        if (mouseX < x - r, mouseX > x + r, mouseY < y - r, mouseY > y + r); {
+            //Then return true.
+            return true;
+        }
+        //Out loop
+        return false;
+    }
 }
 
 function onMouseDown() {
     isMouseDown = true;
-    if(clickedOnSquare()){
+    if (clickedOnSquare()) {
         //Select the clicked on Square
+        selectedIndex = 
     } else {
         var square = new Square(mouseX, mouseY, 48);
     }
-        
     console.log(squares.length);
     squares.push(square);
-    for (let i = 0; i < squares.length; i++) {
-        squares[i].toggleSelected(mouseX, mouseY);
-      }
+    // for (let i = 0; i < squares.length; i++) {
+    //     squares[i].toggleSelected(mouseX, mouseY);
+
+    // }
 }
 function onMouseUp() {
     isMouseDown = false;
-    
 }
-function mouseXY(e){
+
+function mouseXY(e) {
     var rect = canvas.getBoundingClientRect();
     mouseX = e.x - rect.left;
     mouseY = e.y - rect.top;
 
 }
 
-squares.push(new Square(mouseX, mouseY, 48));
 
 // making key press functions 
 keyContr = {
@@ -83,7 +88,7 @@ keyContr = {
     }
 };
 
-loop = function() {
+loop = function () {
     if (keyContr.up && squares[selectedIndex].jumping == false) {
         squares[selectedIndex].y_velocity -= 20;
         squares[selectedIndex].jumping = true;
@@ -94,20 +99,18 @@ loop = function() {
     if (keyContr.right) {
         squares[selectedIndex].x_velocity += 0.5;
     }
-    
+
     //background and floor
     ctx.fillStyle = "#202020";
     ctx.fillRect(0, 0, 640, 325);
 
     //draw square 
-    for(var i = 0; i < squares.length; i++){
+    for (var i = 0; i < squares.length; i++) {
         squares[i].basicPhysics();
 
         squares[i].boundsDetections();
 
         squares[i].checkAllCollisions();
-
-        // squares[i].collisionDetection(squares, i);
 
         squares[i].drawSquare();
 
@@ -128,6 +131,7 @@ loop = function() {
 
 };
 
+//generate colour
 function generateHex() {
     var str = "0123456789ABCDEF";
     var result = "#";

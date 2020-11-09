@@ -53,43 +53,6 @@ class Square {
 
     }
 
-
-    // collisionDetection() {
-    //     let sq1;
-    //     let sq2;
-
-    //     //reset collision state of square
-    //     for(let i = 0; i < squares.length; i++) {
-    //         squares[i].isColliding = false;
-    //     }
-    //     //loops through squares array checking each object for collision
-    //     for (let i = 0; i < squares.length; i++) {
-
-    //         sq1 = squares[i];
-    //         for (let j = i + 1; j < squares.length; j++) {
-
-    //             sq2 = squares[j];
-    //             if (squares[i].collides(squares[j])) {
-    //                 sq1.isColliding = true;
-    //                 sq2.isColliding = true;
-    //                 this.x_velocity = 0
-    //             }
-
-    //         }
-    //     }
-    // }
-    // collides(x1, y1, w1, x2, y2, w2) {
-    //     //check x and y for overlap
-
-    //     if (x2 > w1 + x1 || 
-    //         x1 > w2 + x2 || 
-    //         y2 > w1 + y1 || 
-    //         y1 > w2 + y2){
-    //         return false;
-    //     }
-    //     return true;
-    // }
-
     boundsDetections() {
         if (this.y > 330 - 1 - 48) {
             this.jumping = false;
@@ -109,7 +72,6 @@ class Square {
     }
     toggleSelected(i, squares) {
         for (var j = i + 1; j < squares.length; j++) {
-            
             this.selected = !this.selected;
             let dist = Math.sqrt(dx * dx + dy * dy);
             if (dist < this.radius) {
