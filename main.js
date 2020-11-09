@@ -36,7 +36,6 @@ function clickedOnSquare() {
 
 function onMouseDown() {
     isMouseDown = true;
-    
     if(clickedOnSquare()){
         //Select the clicked on Square
     } else {
