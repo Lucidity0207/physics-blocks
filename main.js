@@ -26,11 +26,23 @@ canvas.addEventListener('mouseup', onMouseUp);
 // tracking mouse x & y
 canvas.addEventListener('mousemove', mouseXY);
 
+function clickedOnSquare() {
+    //Loop through all squares.
+      //If mouseX and mouseY collide with square
+        //Then return true.
+    //Out loop
+      //return false.  
+}
 
 function onMouseDown() {
     isMouseDown = true;
     
-    var square = new Square(mouseX, mouseY, 48);
+    if(clickedOnSquare()){
+        //Select the clicked on Square
+    } else {
+        var square = new Square(mouseX, mouseY, 48);
+    }
+        
     console.log(squares.length);
     squares.push(square);
     for (let i = 0; i < squares.length; i++) {

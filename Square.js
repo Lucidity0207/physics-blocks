@@ -109,9 +109,7 @@ class Square {
     }
     toggleSelected(i, squares) {
         for (var j = i + 1; j < squares.length; j++) {
-            var squareB = squares[j];
-            var dx = squareB.x - this.x;
-            var dy = squareB.y - this.y;
+            
             this.selected = !this.selected;
             let dist = Math.sqrt(dx * dx + dy * dy);
             if (dist < this.radius) {
