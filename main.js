@@ -47,16 +47,6 @@ function mouseXY(e){
     mouseY = e.y - rect.top;
 
 }
-function dist(x,y){
-    this.x = x;
-    this.y = y;
-
-    this.distanceTo = function (point)
-    {
-        var dist = Math.sqrt((Math.pow(this.x-this.x,2))+(Math.pow(this.y-this.y,2)))
-        return dist;
-    };
-}
 
 squares.push(new Square(mouseX, mouseY, 48));
 
