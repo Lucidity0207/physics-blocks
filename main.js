@@ -41,12 +41,8 @@ function clickedOnSquare(x, y, r) {
 
 function onMouseDown() {
     isMouseDown = true;
-    if (clickedOnSquare()) {
-        //Select the clicked on Square
-        selectedIndex = 
-    } else {
         var square = new Square(mouseX, mouseY, 48);
-    }
+    
     console.log(squares.length);
     squares.push(square);
     // for (let i = 0; i < squares.length; i++) {
